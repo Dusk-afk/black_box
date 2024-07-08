@@ -12,8 +12,13 @@ import 'package:provider/provider.dart';
 /// This class is responsible for handling all the business logic related to items
 class ItemsService {
   static Future<void> _saveImage(Item item, XFile image) async {
+    if (image.path == item.file.path) return;
     // Copy image to new path
     File(image.path).copySync(item.file.path);
+
+    // Remove the image from cache
+    // Source: https://github.com/flutter/flutter/issues/24858
+    imageCache.evict(FileImage(item.file));
   }
 
   static Future<void> saveItem(
@@ -27,10 +32,6 @@ class ItemsService {
 
     // Save image
     await _saveImage(item, image);
-
-    // Remove the image from cache
-    // Source: https://github.com/flutter/flutter/issues/24858
-    imageCache.evict(FileImage(item.file));
 
     // Add to provider
     final itemsProvider = context.read<ItemsProvider>();

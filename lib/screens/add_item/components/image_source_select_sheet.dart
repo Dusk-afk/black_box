@@ -29,7 +29,10 @@ class ImageSourceSelectSheet extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                            Theme.of(context).primaryColor.withOpacity(0.1),
+                            Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.1),
                           ),
                           shape:
                               WidgetStateProperty.all<RoundedRectangleBorder>(
@@ -62,7 +65,10 @@ class ImageSourceSelectSheet extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                            Theme.of(context).primaryColor.withOpacity(0.1),
+                            Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.1),
                           ),
                           shape:
                               WidgetStateProperty.all<RoundedRectangleBorder>(

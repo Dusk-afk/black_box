@@ -32,15 +32,22 @@ class HomeScreen extends StatelessWidget {
           Icons.add,
         ),
       ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) => Padding(
-          padding: EdgeInsets.only(
-            bottom: index == items.length - 1 ? 100 : 0,
-          ),
-          child: ItemCard(item: items[index]),
-        ),
-      ),
+      body: items.isEmpty
+          ? Center(
+              child: Text(
+                'No items found',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            )
+          : ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.only(
+                  bottom: index == items.length - 1 ? 100 : 0,
+                ),
+                child: ItemCard(item: items[index]),
+              ),
+            ),
     );
   }
 }
